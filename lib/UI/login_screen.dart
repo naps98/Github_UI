@@ -51,14 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void _checkDeepLink(String link) {
     if (link != null) {
       String code = link.substring(link.indexOf(RegExp('code=')) + 5);
-      authService.loginWithGitHub(code)
-          .then((firebaseUser) {
-        print(firebaseUser!.email!);
-        print(firebaseUser.photoURL);
-        // print("LOGGED IN AS: " + firebaseUser.displayName);
-      }).catchError((e) {
-        print("LOGIN ERROR: " + e.toString());
-      });
+      // authService.loginWithGitHub(code)
+      //     .then((firebaseUser) {
+      //   print(firebaseUser!.email!);
+      //   print(firebaseUser.photoURL);
+      //   // print("LOGGED IN AS: " + firebaseUser.displayName);
+      // }).catchError((e) {
+      //   print("LOGIN ERROR: " + e.toString());
+      // });
     }
   }
   void _disposeDeepLinkListener() {
