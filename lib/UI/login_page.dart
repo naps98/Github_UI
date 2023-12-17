@@ -13,7 +13,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final GitHubSignIn gitHubSignIn = GitHubSignIn(
     clientId: 'ea177fbb1008ce0c2369',
     clientSecret: '8849b2597b55c8e78ab455d19e85dd92d0fc5317',
@@ -31,15 +30,13 @@ class _LoginPageState extends State<LoginPage> {
     var result = await gitHubSignIn.signIn(context);
     switch (result.status) {
       case GitHubSignInResultStatus.ok:
-        print("user status: "+result.status.toString());
-        print("user token: "+result.token.toString());
-        if (result.status == GitHubSignInResultStatus.ok && result.token != null) {
-          /*String gitHubToken = result.token!;
-          AuthCredential credential = GithubAuthProvider.credential(gitHubToken);
-        print("user credential: "+credential.toString());
-          await FirebaseAuth.instance.signInWithCredential(credential);*/
+        print("user status: " + result.status.toString());
+        print("user token: " + result.token.toString());
+        if (result.status == GitHubSignInResultStatus.ok &&
+            result.token != null) {
           setAccessToken(result.token!);
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => HomePage()));
         } else {
           print('GitHub sign-in failed or token is null');
         }
@@ -64,8 +61,7 @@ class _LoginPageState extends State<LoginPage> {
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: Image(
-              image: AssetImage(
-                  'assets/github-logo-vector 1.png'),
+              image: AssetImage('assets/github-logo-vector 1.png'),
               fit: BoxFit.fill,
               width: 220,
               height: 90,
@@ -75,54 +71,50 @@ class _LoginPageState extends State<LoginPage> {
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: Image(
-              image: AssetImage(
-                  'assets/Group 1000001873.png'),
+              image: AssetImage('assets/Group 1000001873.png'),
               fit: BoxFit.fill,
-              width: MediaQuery.of(context).size.width/1.5,
-              height: MediaQuery.of(context).size.width/1.5,
+              width: MediaQuery.of(context).size.width / 1.5,
+              height: MediaQuery.of(context).size.width / 1.5,
             ),
           ),
           Container(
             child: Text(
               "Lets built from here...",
-              style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Our platform drive innovation with tools\nthat boost developer velocity",
-              style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: Colors.grey),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey),
               textAlign: TextAlign.center,
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               _gitHubSignIn(context);
               // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                 color: Color(0xff706CFF),
+                color: Color(0xff706CFF),
               ),
               alignment: Alignment.center,
               height: 50,
               margin: EdgeInsets.symmetric(horizontal: 20),
-              child:Text('Sign in with Github',
-                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
-                textAlign: TextAlign.center,),
-              /*child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff706CFF),
-                  foregroundColor: Colors.white,
-
-                ),
-                child: Text('Sign in with Github'),
-                onPressed: (){
-
-                },
-              ),*/
+              child: Text(
+                'Sign in with Github',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],
